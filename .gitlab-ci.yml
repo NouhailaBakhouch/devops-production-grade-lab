@@ -8,7 +8,7 @@ stages:
 
 variables:
   # On force Maven à utiliser ton settings.xml (avec les credentials Nexus)
-  MAVEN_CLI_OPTS: "-s .maven/settings.xml --batch-mode"
+  MAVEN_CLI_OPTS: "-s .mvn/settings.xml --batch-mode"
 
 cache:
   paths:

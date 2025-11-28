@@ -1,0 +1,41 @@
+image: maven:3.9-eclipse-temurin-17
+
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+variables:
+  # On force Maven à utiliser ton settings.xml (avec les credentials Nexus)
+  MAVEN_CLI_OPTS: "-s .maven/settings.xml --batch-mode"
+
+cache:
+  paths:
+    - .m2/repository
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+
+test:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+
+package:
+  stage: package
+  script:
+    - mvn $MAVEN_CLI_OPTS package
+  artifacts:
+    paths:
+      - target/*.jar
+
+deploy:
+  stage: deploy
+  script:
+    # clean + deploy vers ton repo maven-releases (déclaré dans <distributionManagement>)
+    - mvn $MAVEN_CLI_OPTS clean deploy
+  only:
+    - main   # ou "master" selon ta branche par défaut

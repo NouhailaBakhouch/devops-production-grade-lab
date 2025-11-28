@@ -1,0 +1,5 @@
+com\devops\lab\spring_nexus_demo\model\Project.class
+com\devops\lab\spring_nexus_demo\SpringNexusDemoApplication.class
+com\devops\lab\spring_nexus_demo\model\Profile.class
+com\devops\lab\spring_nexus_demo\HelloController.class
+com\devops\lab\spring_nexus_demo\controller\PortfolioController.class

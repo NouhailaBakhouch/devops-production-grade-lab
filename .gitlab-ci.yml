@@ -21,17 +21,17 @@ cache:
 build:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS compile
+    - .\mvnw.cmd $MAVEN_CLI_OPTS compile
 
 test:
   stage: test
   script:
-    - mvn $MAVEN_CLI_OPTS test
+    - .\mvnw.cmd $MAVEN_CLI_OPTS test
 
 package:
   stage: package
   script:
-    - mvn $MAVEN_CLI_OPTS package
+    - .\mvnw.cmd $MAVEN_CLI_OPTS package
   artifacts:
     paths:
       - target/*.jar
@@ -40,6 +40,6 @@ deploy:
   stage: deploy
   script:
     # clean + deploy vers ton repo maven-releases (déclaré dans <distributionManagement>)
-    - mvn $MAVEN_CLI_OPTS clean deploy
+    - .\mvnw.cmd $MAVEN_CLI_OPTS clean deploy
   only:
     - master   

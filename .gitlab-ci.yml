@@ -10,10 +10,6 @@ stages:
   - package
   - deploy
 
-variables:
-  # On force Maven à utiliser ton settings.xml (avec les credentials Nexus)
-  MAVEN_CLI_OPTS: "-s .mvn/settings.xml --batch-mode"
-
 cache:
   paths:
     - .m2/repository
@@ -21,17 +17,17 @@ cache:
 build:
   stage: build
   script:
-    - .\mvnw.cmd $MAVEN_CLI_OPTS compile
+    - .\mvnw.cmd -s .maven/settings.xml --batch-mode compile
 
 test:
   stage: test
   script:
-    - .\mvnw.cmd $MAVEN_CLI_OPTS test
+    - .\mvnw.cmd -s .maven/settings.xml --batch-mode test
 
 package:
   stage: package
   script:
-    - .\mvnw.cmd $MAVEN_CLI_OPTS package
+    - .\mvnw.cmd -s .maven/settings.xml --batch-mode package
   artifacts:
     paths:
       - target/*.jar
@@ -39,7 +35,6 @@ package:
 deploy:
   stage: deploy
   script:
-    # clean + deploy vers ton repo maven-releases (déclaré dans <distributionManagement>)
-    - .\mvnw.cmd $MAVEN_CLI_OPTS clean deploy
+    - .\mvnw.cmd -s .maven/settings.xml --batch-mode clean deploy
   only:
-    - master   
+    - master

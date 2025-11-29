@@ -17,17 +17,17 @@ cache:
 build:
   stage: build
   script:
-    - .\mvnw.cmd -s .maven/settings.xml --batch-mode compile
+    - .\mvnw.cmd -s .mvn/settings.xml --batch-mode compile
 
 test:
   stage: test
   script:
-    - .\mvnw.cmd -s .maven/settings.xml --batch-mode test
+    - .\mvnw.cmd -s .mvn/settings.xml --batch-mode test
 
 package:
   stage: package
   script:
-    - .\mvnw.cmd -s .maven/settings.xml --batch-mode package
+    - .\mvnw.cmd -s .mvn/settings.xml --batch-mode package
   artifacts:
     paths:
       - target/*.jar
@@ -35,6 +35,6 @@ package:
 deploy:
   stage: deploy
   script:
-    - .\mvnw.cmd -s .maven/settings.xml --batch-mode clean deploy
+    - .\mvnw.cmd -s .mvn/settings.xml --batch-mode clean deploy
   only:
     - master

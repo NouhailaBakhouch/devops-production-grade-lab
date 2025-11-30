@@ -53,9 +53,9 @@
 	</build>
     <distributionManagement>
         <repository>
-            <id>nexus-maven-releases</id>
+            <id>nexus-maven-repo</id>
             <!-- À adapter selon où tourne ton runner -->
-            <url>http://localhost:8081/repository/maven-releases/</url>
+            <url>http://localhost:8081/repository/maven-repo/</url>
             <!-- si le runner est dans un container sur la même machine: http://host.docker.internal:8081/repository/maven-repo/ -->
         </repository>
     </distributionManagement>

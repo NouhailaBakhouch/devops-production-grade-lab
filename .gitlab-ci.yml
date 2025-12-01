@@ -34,10 +34,12 @@ package:
 
 deploy:
   stage: deploy
+  variables:
+    REVISION: "$BASE_VERSION.$CI_PIPELINE_IID"
   script:
-    - export BASE_VERSION="1.0"
-    - export REVISION="$BASE_VERSION.$CI_PIPELINE_IID"
+    # 1. Afficher la version
     - echo "Version maven utilisée : $REVISION"
-    - .\mvnw.cmd -s .mvn/settings.xml --batch-mode clean deploy
+    # 2. Exécuter le déploiement avec le profil de déploiement (si nécessaire) et la bonne version
+    - mvn -s .mvn/settings.xml --batch-mode clean deploy
   only:
     - master

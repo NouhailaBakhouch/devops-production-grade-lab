@@ -5,7 +5,7 @@
 
     <servers>
         <server>
-            <id>nexus-maven-repo</id>
+            <id>nexus-maven-releases</id>
             <username>${env.NEXUS_USER}</username>
             <password>${env.NEXUS_PASSWORD}</password>
         </server>
